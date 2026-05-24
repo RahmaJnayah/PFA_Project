@@ -1,0 +1,8 @@
+APP_URL=http://localhost/PRO-PFE-YOPY/yopy-platform
+MAIL_FROM=your-email@example.com
+MAIL_FROM_NAME=YOPY
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USERNAME=your-email@example.com
+SMTP_PASSWORD=your-app-password
+SMTP_ENCRYPTION=tls
