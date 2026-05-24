@@ -1,0 +1,7 @@
+{
+  "name": "pro-pfe-yopy-root",
+  "private": true,
+  "scripts": {
+    "test": "npm --prefix yopy-platform test"
+  }
+}
