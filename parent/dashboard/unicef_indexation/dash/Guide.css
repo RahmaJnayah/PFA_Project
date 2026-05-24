@@ -1,0 +1,299 @@
+/* ═══════════════════════════════════════════════════════════════════
+   GUIDE.CSS  —  Sentiment Hub First-Time Tour Styles
+   Place this in the same folder as style.css and link in <head>
+═══════════════════════════════════════════════════════════════════ */
+
+/* ── Tour container ── */
+#sh-tour {
+  /* z-index set inline; no other overrides needed */
+}
+
+/* ── Progress bar (thin glowing line at top of screen) ── */
+#sh-tour-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--cyan, #69DAFF), var(--violet, #A68CFF));
+  border-radius: 0 99px 99px 0;
+  box-shadow: 0 0 10px rgba(105, 218, 255, 0.7);
+  transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9005;
+  pointer-events: none;
+}
+
+/* ── SVG Spotlight overlay ── */
+#sh-tour-spotlight {
+  /* position / size set inline */
+  cursor: pointer; /* clicking backdrop = advance */
+}
+
+/* Animated hole transition */
+#sh-tour-hole {
+  transition: x 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              y 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              width  0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Tooltip / Popover ── */
+#sh-tour-tooltip {
+  position: fixed;
+  z-index: 9010;
+  width: 340px;
+  max-width: calc(100vw - 32px);
+  pointer-events: all;
+
+  /* Initial state (animated to visible by JS) */
+  opacity: 0;
+  display: none;
+}
+
+/* Inner card */
+#sh-tour-tt-inner {
+  background: var(--bg2, #13101E);
+  border: 1px solid rgba(105, 218, 255, 0.28);
+  border-radius: 20px;
+  padding: 24px 24px 20px;
+  box-shadow:
+    0 0 0 1px rgba(105,218,255,0.08),
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(105, 218, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glowing top border line */
+#sh-tour-tt-inner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan, #69DAFF), var(--violet, #A68CFF), transparent);
+  border-radius: 20px 20px 0 0;
+}
+
+/* Light mode adaptation */
+html.light #sh-tour-tt-inner {
+  background: #ffffff;
+  border-color: rgba(105, 218, 255, 0.35);
+  box-shadow:
+    0 0 0 1px rgba(105,218,255,0.12),
+    0 20px 60px rgba(0, 0, 0, 0.14),
+    0 0 40px rgba(105, 218, 255, 0.06);
+  color: #1A0B2E;
+}
+
+/* ── Header row (emoji + counter) ── */
+#sh-tour-tt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+#sh-tour-tt-emoji {
+  font-size: 36px;
+  line-height: 1;
+  display: block;
+}
+
+#sh-tour-tt-counter {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cyan, #69DAFF);
+  background: rgba(105, 218, 255, 0.1);
+  border: 1px solid rgba(105, 218, 255, 0.2);
+  padding: 3px 9px;
+  border-radius: 99px;
+  white-space: nowrap;
+  margin-top: 4px;
+}
+
+/* ── Title ── */
+#sh-tour-tt-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  margin: 0 0 8px;
+  line-height: 1.3;
+  color: var(--text, #F0EEF8);
+}
+html.light #sh-tour-tt-title { color: #1A0B2E; }
+
+/* ── Description ── */
+#sh-tour-tt-desc {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--muted, rgba(240, 238, 248, 0.55));
+  margin: 0 0 16px;
+}
+html.light #sh-tour-tt-desc { color: rgba(26,11,46,0.6); }
+
+/* ── Dot indicators ── */
+#sh-tour-tt-dots {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.sh-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(105, 218, 255, 0.15);
+  border: 1px solid rgba(105, 218, 255, 0.2);
+  transition: background 0.2s, transform 0.2s, width 0.2s;
+  display: inline-block;
+}
+
+.sh-dot-active {
+  background: var(--cyan, #69DAFF);
+  border-color: var(--cyan, #69DAFF);
+  width: 18px;
+  border-radius: 99px;
+  box-shadow: 0 0 8px rgba(105, 218, 255, 0.5);
+}
+
+/* ── Action row ── */
+#sh-tour-tt-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+#sh-tour-nav-btns {
+  display: flex;
+  gap: 8px;
+}
+
+/* ── Button base ── */
+.sh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+/* Ghost (secondary) button */
+.sh-btn-ghost {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: var(--muted, rgba(240, 238, 248, 0.55));
+}
+.sh-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(105, 218, 255, 0.25);
+  color: var(--text, #F0EEF8);
+}
+html.light .sh-btn-ghost {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.1);
+  color: rgba(26,11,46,0.5);
+}
+html.light .sh-btn-ghost:hover {
+  background: rgba(105,218,255,0.08);
+  color: #1A0B2E;
+}
+
+/* Primary (next) button */
+.sh-btn-primary {
+  background: linear-gradient(135deg, var(--cyan, #69DAFF), var(--violet, #A68CFF));
+  color: #0D0B14;
+  box-shadow: 0 4px 14px rgba(105, 218, 255, 0.25);
+}
+.sh-btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(105, 218, 255, 0.38);
+}
+.sh-btn-primary:active { transform: translateY(0); }
+
+/* Finish (last step) button */
+.sh-btn-finish {
+  background: linear-gradient(135deg, #69DAFF, #A68CFF, #FFD166);
+  color: #0D0B14;
+  font-weight: 700;
+  box-shadow: 0 4px 18px rgba(105, 218, 255, 0.3);
+  animation: sh-pulse-glow 2s ease-in-out infinite alternate;
+}
+.sh-btn-finish:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(105, 218, 255, 0.45);
+}
+
+@keyframes sh-pulse-glow {
+  from { box-shadow: 0 4px 18px rgba(105, 218, 255, 0.25); }
+  to   { box-shadow: 0 4px 28px rgba(166, 140, 255, 0.5);  }
+}
+
+/* ── Arrow pointer ── */
+#sh-tour-tt-arrow {
+  position: absolute;
+  width: 0; height: 0;
+  border-style: solid;
+  transition: all 0.25s ease;
+}
+
+/* ── Highlight ring on target element ── */
+.sh-tour-highlight {
+  outline: 2.5px solid var(--cyan, #69DAFF) !important;
+  outline-offset: 6px !important;
+  border-radius: 12px;
+  box-shadow: 0 0 0 6px rgba(105, 218, 255, 0.12), 0 0 30px rgba(105, 218, 255, 0.2) !important;
+  transition: outline 0.3s ease, box-shadow 0.3s ease !important;
+  position: relative;
+  z-index: 9001 !important;
+}
+
+/* ── "Replay Tutorial" button that appears in Settings ── */
+#sh-replay-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(105, 218, 255, 0.25);
+  background: rgba(105, 218, 255, 0.08);
+  color: var(--cyan, #69DAFF);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+#sh-replay-btn:hover {
+  background: rgba(105, 218, 255, 0.15);
+  border-color: rgba(105, 218, 255, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(105, 218, 255, 0.2);
+}
+
+/* ── Mobile adaptations ── */
+@media (max-width: 560px) {
+  #sh-tour-tooltip {
+    width: calc(100vw - 28px);
+    max-width: 100%;
+    left: 14px !important;
+    right: 14px !important;
+    transform: none !important;
+  }
+  #sh-tour-tt-inner { padding: 20px 18px 16px; }
+  #sh-tour-tt-emoji { font-size: 28px; }
+  #sh-tour-tt-title { font-size: 15px; }
+  #sh-tour-tt-desc  { font-size: 12px; }
+  #sh-tour-tt-actions { flex-wrap: wrap; }
+  #sh-tour-nav-btns   { margin-left: auto; }
+}

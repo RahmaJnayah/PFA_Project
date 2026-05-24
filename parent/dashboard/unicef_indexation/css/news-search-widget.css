@@ -1,0 +1,381 @@
+/**
+ * UNICEF News Search Widget - CSS Styles
+ * 
+ * Provides styling for the news search widget
+ * Can be customized to match your dashboard theme
+ */
+
+/* ════════════════════════════════════════════════════════════
+   Search Widget Container
+   ════════════════════════════════════════════════════════════ */
+
+.news-search-widget {
+    width: 100%;
+    margin: 20px 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.news-search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.news-search-input {
+    flex: 1;
+    min-width: 250px;
+    padding: 12px 16px;
+    font-size: 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+}
+
+.news-search-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.news-search-btn {
+    padding: 12px 24px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.news-search-btn:hover {
+    background: #5a67d8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.news-search-btn:active {
+    transform: translateY(0);
+}
+
+.news-search-btn:disabled {
+    background: #cbd5e0;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ════════════════════════════════════════════════════════════
+   Results
+   ════════════════════════════════════════════════════════════ */
+
+.search-results {
+    animation: slideIn 0.3s ease;
+}
+
+.results-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.results-header h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: #1a202c;
+}
+
+.results-meta {
+    margin: 0;
+    font-size: 13px;
+    color: #718096;
+}
+
+.result-item {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+}
+
+.result-item:hover {
+    border-color: #cbd5e0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.result-item h4 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    color: #667eea;
+    word-break: break-word;
+}
+
+.result-item p {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    color: #4a5568;
+    line-height: 1.6;
+}
+
+.result-meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: #718096;
+    margin-bottom: 10px;
+}
+
+.result-meta .date {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.read-more {
+    display: inline-block;
+    color: #667eea;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 8px;
+    transition: color 0.2s;
+}
+
+.read-more:hover {
+    color: #5a67d8;
+    text-decoration: underline;
+}
+
+.no-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: #718096;
+    font-size: 16px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   Statistics
+   ════════════════════════════════════════════════════════════ */
+
+.stats-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.stat-item {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.stat-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+/* ════════════════════════════════════════════════════════════
+   Alerts
+   ════════════════════════════════════════════════════════════ */
+
+.alert {
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    animation: slideInDown 0.3s ease;
+}
+
+.alert-error {
+    background: #fed7d7;
+    color: #c53030;
+    border: 1px solid #fc8181;
+}
+
+.alert-success {
+    background: #c6f6d5;
+    color: #22543d;
+    border: 1px solid #9ae6b4;
+}
+
+.alert-warning {
+    background: #feebc8;
+    color: #7c2d12;
+    border: 1px solid #fbd38d;
+}
+
+.alert-info {
+    background: #bee3f8;
+    color: #2c5282;
+    border: 1px solid #90cdf4;
+}
+
+/* ════════════════════════════════════════════════════════════
+   Badges
+   ════════════════════════════════════════════════════════════ */
+
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+.badge-indexed {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.badge-pending {
+    background: #feebc8;
+    color: #7c2d12;
+}
+
+.badge-new {
+    background: #bee3f8;
+    color: #2c5282;
+}
+
+/* ════════════════════════════════════════════════════════════
+   Animations
+   ════════════════════════════════════════════════════════════ */
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ════════════════════════════════════════════════════════════
+   Loading State
+   ════════════════════════════════════════════════════════════ */
+
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ════════════════════════════════════════════════════════════
+   Responsive Design
+   ════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    .news-search-box {
+        flex-direction: column;
+    }
+
+    .news-search-input {
+        min-width: 100%;
+    }
+
+    .news-search-btn {
+        width: 100%;
+    }
+
+    .stats-display {
+        grid-template-columns: 1fr;
+    }
+
+    .result-item {
+        padding: 12px;
+    }
+
+    .result-item h4 {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .results-header h3 {
+        font-size: 16px;
+    }
+
+    .result-meta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .stat-value {
+        font-size: 24px;
+    }
+}
+
+/* ════════════════════════════════════════════════════════════
+   Accessibility
+   ════════════════════════════════════════════════════════════ */
+
+.news-search-input:focus,
+.news-search-btn:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: more) {
+    .result-item {
+        border-width: 2px;
+    }
+
+    .badge {
+        border: 1px solid currentColor;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
